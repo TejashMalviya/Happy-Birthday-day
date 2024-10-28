@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival of Lights & New Beginnings</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #0b132b;
+            color: #f7f7f7;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1, h2 {
+            color: #ffd700;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/1600x900/?diwali') no-repeat center center/cover;
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #ffd700;
+            color: #0b132b;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ff9500;
+        }
+
+        .celebration-page, .birthday-surprise, .end-note {
+            display: none;
+        }
+
+        .diya {
+            display: inline-block;
+            margin: 10px;
+            width: 50px;
+            height: 50px;
+            background: url('https://source.unsplash.com/100x100/?diya') no-repeat center/cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .diya:hover {
+            transform: scale(1.2);
+        }
+
+        .cake {
+            width: 200px;
+            height: 200px;
+            background: url('https://source.unsplash.com/200x200/?cake,diya') no-repeat center/cover;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .cake .diya {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .message {
+            font-size: 20px;
+            margin: 20px;
+        }
+
+        .end-diya {
+            width: 70px;
+            height: 70px;
+            background: url('https://source.unsplash.com/70x70/?diya,glow') no-repeat center/cover;
+            margin: 0 auto;
+            cursor: pointer;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="container landing-page">
+        <h1>Festival of Lights, Joy, and New Beginnings</h1>
+        <p>Step into a world of light and celebration!</p>
+        <button class="btn" onclick="showCelebrationPage()">Step into the Celebration</button>
+    </div>
+
+    <div class="container celebration-page">
+        <h2>Celebrate the Brightness of Life</h2>
+        <div class="diya" onclick="showWishes(1)"></div>
+        <div class="diya" onclick="showWishes(2)"></div>
+        <div class="diya" onclick="showWishes(3)"></div>
+        <div class="diya" onclick="showWishes(4)"></div>
+        <p id="wishes" class="message"></p>
+        <button class="btn" onclick="showBirthdaySurprise()">Next</button>
+    </div>
+
+    <div class="container birthday-surprise">
+        <h2>Happy Special Day!</h2>
+        <div class="cake">
+            <div class="diya" onclick="lightDiyaOnCake()"></div>
+        </div>
+        <p class="message">May your journey be filled with endless moments of joy!</p>
+        <button class="btn" onclick="showEndNote()">Light the Diyas</button>
+    </div>
+
+    <div class="container end-note">
+        <h2>Warm Wishes for the Festival of Lights</h2>
+        <p class="message">May this Diwali bring you endless joy, just as today brings countless smiles.</p>
+        <div class="end-diya"></div>
+    </div>
+
+    <script>
+        function showCelebrationPage() {
+            document.querySelector('.landing-page').classList.add('hidden');
+            document.querySelector('.celebration-page').style.display = 'block';
+        }
+
+        function showWishes(diyaNumber) {
+            const wishes = [
+                "May your life shine brighter than a thousand Diyas.",
+                "Wishing you joy and endless smiles.",
+                "Let every moment be a celebration.",
+                "May your days be as vibrant as Diwali lights."
+            ];
+            document.getElementById('wishes').textContent = wishes[diyaNumber - 1];
+        }
+
+        function showBirthdaySurprise() {
+            document.querySelector('.celebration-page').classList.add('hidden');
+            document.querySelector('.birthday-surprise').style.display = 'block';
+        }
+
+        function lightDiyaOnCake() {
+            alert("The Diya glows brightly! May your path always be bright.");
+        }
+
+        function showEndNote() {
+            document.querySelector('.birthday-surprise').classList.add('hidden');
+            document.querySelector('.end-note').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
