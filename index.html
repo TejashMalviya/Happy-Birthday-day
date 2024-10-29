@@ -64,7 +64,6 @@
     <div id="cat">😺</div>
     <p class="message">Click the cat for some joy! 🐾</p>
     <p class="message">Touch the cat to reveal some wishes!</p>
-    <button id="next-btn">Next</button>
 </div>
 
 <div id="self-reflection" class="page">
@@ -73,7 +72,6 @@
     <p>Every mistake is a lesson.</p>
     <p>Growth comes from understanding and accepting my flaws.</p>
     <p>I wish to be a better person, learning from past experiences.</p>
-    <button id="next-btn-2">Next</button>
 </div>
 
 <div id="goodbye-message" class="page">
@@ -98,12 +96,6 @@
         showPage(pages[++currentPage]);
     });
 
-    document.getElementById('next-btn').addEventListener('click', () => {
-        if (currentPage < pages.length - 1) {
-            showPage(pages[++currentPage]);
-        }
-    });
-
     document.getElementById('cat').addEventListener('click', () => {
         const messages = [
             "Wishing you the happiest of days!",
@@ -118,7 +110,6 @@
             if (messageIndex < messages.length) {
                 messageContainer.innerText = messages[messageIndex++];
             } else {
-                document.getElementById('game').style.display = 'none';
                 showPage(pages[++currentPage]);
             }
         });
