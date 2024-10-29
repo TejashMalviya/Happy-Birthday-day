@@ -9,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             background-color: #ffebf7;
@@ -17,11 +17,10 @@
             text-align: center;
             overflow: hidden;
         }
-        #game, #final-message {
+        #page {
             display: none;
             flex-direction: column;
             align-items: center;
-            font-size: 1.5em;
             animation: fadeIn 1s ease-in-out;
         }
         #cat {
@@ -33,7 +32,7 @@
             margin-top: 20px;
             color: #ff69b4; /* A vibrant pink for the messages */
         }
-        #start-btn {
+        #start-btn, #next-btn {
             padding: 10px 20px;
             font-size: 1.1em;
             color: #fff;
@@ -43,7 +42,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        #start-btn:hover {
+        #start-btn:hover, #next-btn:hover {
             background-color: #ff1493; /* Darker pink on hover */
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -55,48 +54,78 @@
 </head>
 <body>
 
-<div id="content">
+<div id="welcome" class="page">
     <h1>Happy Birthday 🎉</h1>
     <p>Click the button to begin!</p>
     <button id="start-btn">Start</button>
 </div>
 
-<div id="game">
+<div id="game" class="page">
     <div id="cat">😺</div>
-    <p class="message">Click the cat for some joy!</p>
+    <p class="message">Click the cat for some joy! 🐾</p>
+    <p class="message">Touch the cat to reveal some wishes!</p>
+    <button id="next-btn">Next</button>
 </div>
 
-<div id="final-message">
-    <p>Birthday birthday dear my ladki dikri 😺.</p>
-    <p>Stay happy in your life, fulfill your dreams, and enjoy each moment.</p>
-    <p>From my side, windows are always open for you. Please welcome.</p>
-    <p>Happy Birthday again.</p>
+<div id="self-reflection" class="page">
+    <h2>Self-Realization</h2>
+    <p>In this journey of life, I've learned that:</p>
+    <p>Every mistake is a lesson.</p>
+    <p>Growth comes from understanding and accepting my flaws.</p>
+    <p>I wish to be a better person, learning from past experiences.</p>
+    <button id="next-btn-2">Next</button>
+</div>
+
+<div id="goodbye-message" class="page">
+    <h2>Goodbye Message</h2>
+    <p>As we part ways, I want to say:</p>
+    <p>Your happiness means the world to me.</p>
+    <p>Thank you for the memories we've shared.</p>
+    <p>I hope you achieve all your dreams.</p>
     <p><strong>From yours, champudi</strong></p>
 </div>
 
 <script>
-    document.getElementById('start-btn').addEventListener('click', () => {
-        document.getElementById('content').style.display = 'none';
-        document.getElementById('game').style.display = 'flex';
+    let currentPage = 0;
+    const pages = ['welcome', 'game', 'self-reflection', 'goodbye-message'];
 
-        // Cat animation sequence
+    function showPage(page) {
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+        document.getElementById(page).style.display = 'flex';
+    }
+
+    document.getElementById('start-btn').addEventListener('click', () => {
+        showPage(pages[++currentPage]);
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+        if (currentPage < pages.length - 1) {
+            showPage(pages[++currentPage]);
+        }
+    });
+
+    document.getElementById('cat').addEventListener('click', () => {
         const messages = [
             "Wishing you the happiest of days!",
             "May your dreams come true! 😺",
             "Smile big today, it’s your special day!",
             "Happiness and success, always with you!"
         ];
-
+        const messageContainer = document.querySelector('.message');
         let messageIndex = 0;
+        messageContainer.innerText = messages[messageIndex++];
         document.getElementById('cat').addEventListener('click', () => {
             if (messageIndex < messages.length) {
-                document.querySelector('.message').innerText = messages[messageIndex++];
+                messageContainer.innerText = messages[messageIndex++];
             } else {
                 document.getElementById('game').style.display = 'none';
-                document.getElementById('final-message').style.display = 'flex';
+                showPage(pages[++currentPage]);
             }
         });
     });
+
+    // Show the first page
+    showPage(pages[currentPage]);
 </script>
 
 </body>
