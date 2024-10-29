@@ -75,15 +75,15 @@
             I hope this year brings you every bit of joy, laughter, and peace that you deserve.  
             Thank you for all the memories, the laughs, and even the silences that somehow felt complete. 😊
         </p>
-        <p>Just know, no matter where life takes us, you'll always have someone cheering for you , Windows are always open for you . The ultimate mixture of Hakka noodles and white sauce ya tomato sauce pasta waiting for you ,Most welcome 🎈🎈</p>
+        <p>Just know, no matter where life takes us, you'll always have someone cheering for you, Windows are always open for you. The ultimate mixture of Hakka noodles and white sauce or tomato sauce pasta waiting for you. Most welcome 🎈🎈</p>
         <p style="font-weight: bold;">From your Champudi 🐱💖
-        Or ha Happy Diwali 🪔🪔 khus raho hum aapko tang nhi karenge. Are are ek baat bolna to bhul gya happy dhanteras , jyada dhan aaye to thoda donate karte rehna phone pay ya paytm dono accept karta hu , hum to chale ek safar per kyuki humse aab kam dham to hoga nhi aab itna jydaa heheh sarir bhudha ho gya ha kya hena age ho gyi h 😅🙂.
+        Or ha Happy Diwali 🪔🪔 khus raho hum aapko tang nahi karenge. Are are ek baat bolna to bhul gaya happy dhanteras, jyada dhan aaye to thoda donate karte rehna phone pay ya paytm dono accept karta hu, hum to chale ek safar per kyunki humse ab kam dham to hoga nahi ab itna jyada heheh sarir budha ho gaya ha kya hena age ho gayi h 😅.
         Happy birthday 🎂🎂</p>
     </div>
 </div>
 
 <!-- Audio Element -->
-<audio id="birthdaySong" src="mehuna.mp3" preload="auto" loop></audio>
+<audio id="birthdaySong" src="mehuna.mp3" preload="auto"></audio>
 
 <script>
     // Emoji Confetti Effect
@@ -106,17 +106,19 @@
             document.getElementById('gift').style.display = 'none';
             document.getElementById('final-message').style.display = 'block';
             createConfettiBurst();
+            playMusic();
         });
-
-        // Play the birthday song
-        const birthdaySong = document.getElementById('birthdaySong');
-        birthdaySong.play();
     });
 
     function createConfettiBurst() {
         for (let i = 0; i < 20; i++) {
             setTimeout(createConfetti, i * 50);
         }
+    }
+
+    function playMusic() {
+        const audio = document.getElementById('birthdaySong');
+        audio.play();  // Play the audio
     }
 </script>
 </body>
