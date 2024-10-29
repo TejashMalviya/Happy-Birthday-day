@@ -3,114 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Special One!</title>
+    <title>Happy Birthday 🎉</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
             background-color: #ffebf7;
             color: #333;
             text-align: center;
+            overflow: hidden;
         }
-        #content {
+        #page {
             display: none;
             flex-direction: column;
             align-items: center;
-            animation: fadeIn 1s ease-in-out forwards;
+            animation: fadeIn 1s ease-in-out;
         }
-        #gift {
-            background-color: #ffe066;
-            border: 2px solid #ff4d4d;
-            padding: 30px;
-            border-radius: 10px;
+        #cat {
+            font-size: 5em;
             cursor: pointer;
-            font-size: 3em;
-            box-shadow: 0px 0px 10px #ffb347;
-            transition: transform 0.3s ease;
+            animation: bounce 2s infinite;
         }
-        #gift:hover {
-            transform: scale(1.1);
-        }
-        #final-message {
-            display: none;
-            font-size: 1.2em;
+        .message {
             margin-top: 20px;
-            color: #ff66b2;
-            animation: fadeIn 1.5s ease-in-out forwards;
+            color: #ff69b4; /* A vibrant pink for the messages */
         }
-        /* Emoji Confetti */
-        .confetti {
-            position: absolute;
-            font-size: 1.5em;
-            animation: confetti 2s ease-out infinite;
-            opacity: 0.9;
+        #start-btn, #next-btn {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            color: #fff;
+            background-color: #ff69b4; /* Bright pink for the button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        #start-btn:hover, #next-btn:hover {
+            background-color: #ff1493; /* Darker pink on hover */
         }
-        @keyframes confetti {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
 
-<div id="content">
-    <h1 style="color: #ff66b2;">Happy Birthday, Prachi! 🎉</h1>
-    <p>Today, I'm reminded of how special you are...</p>
-    <div id="gift">🎁 Click Me!</div>
-    <div id="final-message">
-        <p>
-            I hope this year brings you every bit of joy, laughter, and peace that you deserve.  
-            Thank you for all the memories, the laughs, and even the silences that somehow felt complete. 😊
-        </p>
-        <p>Just know, no matter where life takes us, you'll always have someone cheering for you , Windows are always open for you . The ultimate mixture of Hakka noodles and white sauce ya tomato sauce pasta waiting for you ,Most welcome 🎈🎈</p>
-        <p style="font-weight: bold;">From your Champudi 🐱💖
-        Or ha Happy Diwali 🪔🪔 khus raho hum aapko tang nhi karenge.
-        are are ek baat bolna to bhul hi gya happy Dhanteras jydaa dhan aaye to kabhi daan de dia karna paytm ya phone pay kar dena 😅 kyuki hum to chale ek safar per jaha humse aab or kam naah hone wala </p>
-    </div>
+<audio id="background-music" loop>
+    <source src="path_to_your_audio_file/main-hoon-na.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<div id="welcome" class="page">
+    <h1>Happy Birthday 🎉</h1>
+    <p>Click the button to begin!</p>
+    <button id="start-btn">Start</button>
+</div>
+
+<div id="game" class="page">
+    <div id="cat">😺</div>
+    <p class="message">Click the cat for some joy! 🐾</p>
+    <p class="message">Touch the cat to reveal some wishes!</p>
+</div>
+
+<div id="self-reflection" class="page">
+    <h2>Self-Realization</h2>
+    <p>In this journey of life, I've learned that:</p>
+    <p>Every mistake is a lesson.</p>
+    <p>Growth comes from understanding and accepting my flaws.</p>
+    <p>I wish to be a better person, learning from past experiences.</p>
+</div>
+
+<div id="goodbye-message" class="page">
+    <h2>Goodbye Message</h2>
+    <p>As we part ways, I want to say:</p>
+    <p>Your happiness means the world to me.</p>
+    <p>Thank you for the memories we've shared.</p>
+    <p>I hope you achieve all your dreams.</p>
+    <p><strong>From yours, champudi</strong></p>
 </div>
 
 <script>
-    // Emoji Confetti Effect
-    const emojis = ["🐱", "🎈", "💖", "🎉", "✨"];
-    
-    function createConfetti() {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 2000);
-    }
-    setInterval(createConfetti, 150);
+    let currentPage = 0;
+    const pages = ['welcome', 'game', 'self-reflection', 'goodbye-message'];
 
-    // Show gift message
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('content').style.display = 'flex';
-        document.getElementById('gift').addEventListener('click', () => {
-            document.getElementById('gift').style.display = 'none';
-            document.getElementById('final-message').style.display = 'block';
-            createConfettiBurst();
+    function showPage(page) {
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+        document.getElementById(page).style.display = 'flex';
+    }
+
+    document.getElementById('start-btn').addEventListener('click', () => {
+        document.getElementById('background-music').play(); // Start background music
+        showPage(pages[++currentPage]);
+    });
+
+    document.getElementById('cat').addEventListener('click', () => {
+        const messages = [
+            "Wishing you the happiest of days!",
+            "May your dreams come true! 😺",
+            "Smile big today, it’s your special day!",
+            "Happiness and success, always with you!"
+        ];
+        const messageContainer = document.querySelector('.message');
+        let messageIndex = 0;
+        messageContainer.innerText = messages[messageIndex++];
+        document.getElementById('cat').addEventListener('click', () => {
+            if (messageIndex < messages.length) {
+                messageContainer.innerText = messages[messageIndex++];
+            } else {
+                showPage(pages[++currentPage]);
+            }
         });
     });
 
-    function createConfettiBurst() {
-        for (let i = 0; i < 20; i++) {
-            setTimeout(createConfetti, i * 50);
-        }
-    }
+    // Show the first page
+    showPage(pages[currentPage]);
 </script>
+
 </body>
 </html>
