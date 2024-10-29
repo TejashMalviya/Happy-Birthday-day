@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday</title>
+    <title>Happy Birthday!</title>
     <style>
         * {
             margin: 0;
@@ -11,30 +11,30 @@
             box-sizing: border-box;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(to bottom, #ffafbd, #ffc3a0);
-            color: #fff;
+            background-color: #ffebf7;
+            color: #333;
             text-align: center;
         }
         #content {
             display: none;
             flex-direction: column;
             align-items: center;
-            animation: fadeIn 1.5s ease-in-out forwards;
+            animation: fadeIn 1s ease-in-out forwards;
         }
         #gift {
             background-color: #ffe066;
             border: 2px solid #ff4d4d;
-            padding: 40px;
+            padding: 30px;
             border-radius: 10px;
             cursor: pointer;
             font-size: 3em;
-            box-shadow: 0px 0px 20px #ffb347;
+            box-shadow: 0px 0px 10px #ffb347;
             transition: transform 0.3s ease;
         }
         #gift:hover {
@@ -44,35 +44,15 @@
             display: none;
             font-size: 1.2em;
             margin-top: 20px;
+            color: #ff66b2;
             animation: fadeIn 1.5s ease-in-out forwards;
         }
-        /* Sparkle, Firework & Confetti Styles */
-        .fireworks {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-        .firework {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: gold;
-            animation: firework 1s linear infinite;
-        }
+        /* Emoji Confetti */
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ffec99;
+            font-size: 1.5em;
             animation: confetti 2s ease-out infinite;
-            opacity: 0.8;
-        }
-        @keyframes firework {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(5); opacity: 0; }
+            opacity: 0.9;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -87,68 +67,44 @@
 <body>
 
 <div id="content">
-    <h1 style="color: #ff8b94;">Happy Birthday!</h1>
-    <p>Someone special is being celebrated today...</p>
-    <div id="gift">🎁 Click to Open</div>
-    <div id="final-message" style="color: #ffe066;">
-        <p>Enjoy your life, be successful, and sorry if I ever hurt you intentionally.</p>
-        <p>My window is always open for you. Happy Birthday again!</p>
+    <h1 style="color: #ff66b2;">Happy Birthday! 🎉</h1>
+    <p>Someone special deserves the cutest celebration...</p>
+    <div id="gift">🎁 Click Me!</div>
+    <div id="final-message">
+        <p>Enjoy every moment, achieve all your dreams, and remember: I'm sorry if I ever hurt you unintentionally. 😊</p>
+        <p>My window is always open for you. Happy Birthday again! 🎈</p>
+        <p style="font-weight: bold;">From your Champudi 🐱💖</p>
     </div>
 </div>
 
-<div class="fireworks"></div>
-
 <script>
-    // Fireworks and Confetti effects
-    function createFirework() {
-        const firework = document.createElement('div');
-        firework.classList.add('firework');
-        firework.style.left = Math.random() * 100 + 'vw';
-        firework.style.top = Math.random() * 100 + 'vh';
-        firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        document.querySelector('.fireworks').appendChild(firework);
-        setTimeout(() => firework.remove(), 1000);
-    }
-    setInterval(createFirework, 300);
-
+    // Emoji Confetti Effect
+    const emojis = ["🐱", "🎈", "💖", "🎉", "✨"];
+    
     function createConfetti() {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
         document.body.appendChild(confetti);
         setTimeout(() => confetti.remove(), 2000);
     }
-    setInterval(createConfetti, 100);
+    setInterval(createConfetti, 150);
 
     // Show gift message
     document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('content').style.display = 'flex';
         document.getElementById('gift').addEventListener('click', () => {
-            // Sparkle effect and reveal message
             document.getElementById('gift').style.display = 'none';
             document.getElementById('final-message').style.display = 'block';
-            playSparkles();
+            createConfettiBurst();
         });
     });
 
-    function playSparkles() {
-        const confettiColors = ["#f1c40f", "#e74c3c", "#8e44ad", "#3498db", "#2ecc71"];
-        const finalMessage = document.getElementById('final-message');
-        finalMessage.innerHTML += '<div class="sparkle" style="font-size:2em;">🎉</div>';
-        setTimeout(() => {
-            for (let i = 0; i < 50; i++) {
-                const sparkle = document.createElement('span');
-                sparkle.style.position = 'absolute';
-                sparkle.style.left = Math.random() * 100 + 'vw';
-                sparkle.style.top = Math.random() * 100 + 'vh';
-                sparkle.style.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                sparkle.innerText = '✨';
-                document.body.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 1500);
-            }
-        }, 500);
+    function createConfettiBurst() {
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createConfetti, i * 50);
+        }
     }
 </script>
 </body>
