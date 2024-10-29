@@ -7,19 +7,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #fff4e6;
+            background-color: #ffebf7;
+            color: #333;
             text-align: center;
-            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
         #game, #final-message {
             display: none;
             flex-direction: column;
             align-items: center;
-            font-size: 1.2em;
+            font-size: 1.5em;
             animation: fadeIn 1s ease-in-out;
         }
         #cat {
@@ -29,16 +31,20 @@
         }
         .message {
             margin-top: 20px;
-            color: #ff8c8c;
+            color: #ff69b4; /* A vibrant pink for the messages */
         }
         #start-btn {
             padding: 10px 20px;
             font-size: 1.1em;
             color: #fff;
-            background-color: #ff8c8c;
+            background-color: #ff69b4; /* Bright pink for the button */
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #start-btn:hover {
+            background-color: #ff1493; /* Darker pink on hover */
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes bounce {
@@ -57,7 +63,7 @@
 
 <div id="game">
     <div id="cat">😺</div>
-    <p class="message">A little joy and laughter for your day!</p>
+    <p class="message">Click the cat for some joy!</p>
 </div>
 
 <div id="final-message">
