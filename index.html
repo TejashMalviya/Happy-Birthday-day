@@ -82,6 +82,9 @@
     </div>
 </div>
 
+<!-- Audio Element -->
+<audio id="birthdaySong" src="Main Hoon Na RS Creation.mp3" preload="auto" loop></audio>
+
 <script>
     // Emoji Confetti Effect
     const emojis = ["🐱", "🎈", "💖", "🎉", "✨"];
@@ -104,6 +107,10 @@
             document.getElementById('final-message').style.display = 'block';
             createConfettiBurst();
         });
+
+        // Play the birthday song
+        const birthdaySong = document.getElementById('birthdaySong');
+        birthdaySong.play();
     });
 
     function createConfettiBurst() {
